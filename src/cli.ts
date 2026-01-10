@@ -1,6 +1,6 @@
-#!/usr/bin/env tsx
+#!/usr/bin/env node
 import { program } from 'commander'
-import { version } from '../package.json'
+import { createRequire } from 'node:module'
 import { DeployCommand } from './commands/DeployCommand'
 import { DevCommand } from './commands/DevCommand'
 import { InfoCommand } from './commands/InfoCommand'
@@ -10,6 +10,9 @@ import { LoginCommand } from './commands/LoginCommand'
 import { LogoutCommand } from './commands/LogoutCommand'
 import { LogsCommand } from './commands/LogsCommand'
 import { WhoAmICommand } from './commands/WhoAmICommand'
+
+const require = createRequire(import.meta.url)
+const { version } = require('../package.json') as { version: string }
 
 program
   .name(`PocketHost CLI`)

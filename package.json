@@ -17,10 +17,10 @@
   "bugs": {
     "url": "https://github.com/pockethost/phio/issues"
   },
-  "main": "src/index.ts",
-  "module": "src/index.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
   "type": "module",
-  "types": "src/index.ts",
+  "types": "dist/index.d.ts",
   "devDependencies": {
     "@changesets/cli": "^2.28.1",
     "@types/bun": "^1.2.3",
@@ -29,13 +29,16 @@
     "prettier-plugin-organize-imports": "^4.1.0"
   },
   "scripts": {
-    "dev": "tsx ./src/cli.ts"
+    "dev": "tsx ./src/cli.ts",
+    "build": "bun build src/cli.ts src/index.ts --outdir dist --target node --format esm",
+    "prepack": "bun run build"
   },
   "bin": {
-    "phio": "src/cli.ts"
+    "phio": "bin/phio.js"
   },
   "files": [
-    "src"
+    "dist",
+    "bin"
   ],
   "dependencies": {
     "@inquirer/prompts": "^7.3.2",
