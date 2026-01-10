@@ -115,7 +115,12 @@ export async function deployMyCode(
     'log-level': verbose ? 'verbose' : 'minimal',
   }
 
-  await deploy(args)
+  if (process.platform === 'win32') {
+    const { deployFixed } = await import('../lib/ftpDeployWindowsPathSafe')
+    await deployFixed(args)
+  } else {
+    await deploy(args)
+  }
   console.log('🚀 Deploy done!')
 }
 
