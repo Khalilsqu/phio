@@ -31,6 +31,7 @@
   "scripts": {
     "dev": "tsx ./src/cli.ts",
     "build": "bun build src/cli.ts src/index.ts --outdir dist --target node --format esm",
+    "prepare": "bun run build",
     "prepack": "bun run build"
   },
   "bin": {
